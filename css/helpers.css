@@ -1,0 +1,61 @@
+/* FONTS */
+
+@font-face {
+    font-family: Ranchers;
+    src: url(../fonts/Ranchers/Ranchers-Regular.ttf);
+}
+@font-face {
+    font-family: Langar;
+    src: url(../fonts/Langar/Langar-Regular.ttf);
+}
+
+/* BASIC */
+
+.main-layout {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.clean-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+/* FLEX */
+
+.flex {
+    display: flex;
+}
+
+.flex.inline {
+    display: inline-flex;
+}
+
+.flex.start {
+    justify-content: flex-start;
+}
+
+.flex.end {
+    justify-content: flex-end;
+}
+
+/* GRID */
+
+.grid {
+    display: grid;
+}
+
+/* ALIGNMENT */
+
+.align-center {
+    align-items: center;
+}
+
+.just-center {
+    justify-content: center;
+}
+
+.just-spacebetween {
+    justify-content: space-between;
+}

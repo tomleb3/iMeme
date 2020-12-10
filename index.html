@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>iMeme</title>
+    <link rel="icon" href="./imgs/8bitFavicon.png">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body onload="onInit()">
+    <header>
+        <nav class="main-layout flex just-spacebetween">
+            <div class="logo" onclick="location.reload()">iMeme</div>
+            <ul class="clean-list flex">
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Memes</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="main-layout">
+        <canvas width="500px" height="500px" onmousedown="onCanvasClick(event)"></canvas>
+        <div class="control-box">
+            <input type="text" name="meme-txt" placeholder="Text line" oninput="renderCanvas()">
+            <div class="flex just-center">
+                <button onclick="onMoveTxt('up')">↑</button>
+                <button onclick="onMoveTxt('down')">↓</button>
+                <button onclick="onAddTxt()">+</button>
+                <button onclick="onRemoveTxt()">X</button>
+            </div>
+            <div>
+                <button onclick="onChangeSize('plus')">A+</button>
+                <button onclick="onChangeSize('minus')">A-</button>
+                <button onclick="onChangeAlign('end')">L</button>
+                <button onclick="onChangeAlign('center')">C</button>
+                <button onclick="onChangeAlign('start')">R</button>
+                <select name="font-family" onchange="onChangeFont(this.value)">
+                    <option value="impact" selected>IMPACT</option>
+                    <option value="monospace">MONOSPACE</option>
+                    <option value="cursive">CURSIVE</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-layout">
+        <div class="search-container">
+            <input type="text" name="search" placeholder="Search..">
+        </div>
+
+        <div class="gallery grid">
+            <!-- rendered in js -->
+        </div>
+    </main>
+
+    <aside class="sidenav">
+    </aside>
+
+    <footer>
+    </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/service.js"></script>
+    <script src="js/controller.js"></script>
+</body>
+
+</html>
