@@ -42,7 +42,7 @@ var gImgs = [
 
 function drawImg(imgId) {
     const img = new Image();
-    img.src = `../imgs/memes_square/${imgId}.jpg`;
+    img.src = `./imgs/memes_square/${imgId}.jpg`;
     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
 }
 
@@ -99,7 +99,7 @@ function moveTxt(direction) {
         direction === 'up' ? gMeme.lines[gMeme.selectedLineIdx].pos.y-- : gMeme.lines[gMeme.selectedLineIdx].pos.y++;
 }
 
-function fontSize(size) {
+function changeSize(size) {
     if (gMeme.selectedLineIdx !== -1)
         size === 'plus' ? gTxtProp.size++ : gTxtProp.size--;
 }
