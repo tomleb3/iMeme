@@ -2,6 +2,7 @@
 
 function onInit() {
     renderGallery();
+    document.documentElement.scrollTop = 0;
 }
 
 function renderGallery() {
@@ -18,13 +19,14 @@ function onImgClick(imgId) {
     let meme = getMeme();
     elSection.style.display = 'block';
     meme.selectedImgId = imgId;
+    document.documentElement.scrollTop = 0;
     drawImg(imgId);
 }
 
 function renderCanvas() {
     clearCanvas();
     const elInput = document.querySelector('input[name="meme-txt"]');
-    const meme = getMeme();
+    let meme = getMeme();
     drawImg(meme.selectedImgId);
     drawTxt(elInput.value);
     drawAllTxt();
@@ -53,15 +55,36 @@ function onChangeSize(size) {
 }
 
 function onChangeAlign(align) {
-    changeAlign();
+    changeAlign(align);
     renderCanvas();
 }
 
 function onChangeFont(font) {
-    let txtProp = getTxtProp();
-    txtProp.font = font;
+    changeFont(font);
     renderCanvas();
 }
+
+function onImgInput(ev) {
+    loadImageFromInput(ev, renderCanvas)
+}
+
+function loadImageFromInput(ev, onImageReady) {
+    document.querySelector('.share-container').innerHTML = ''
+    var reader = new FileReader();
+
+    reader.onload = function (event) {
+        var img = new Image();
+        img.onload = onImageReady.bind(null, img)
+        img.src = event.target.result;
+    }
+    reader.readAsDataURL(ev.target.files[0]);
+}
+
+function downloadImg(elLink) {
+    var imgContent = gCanvas.toDataURL('image/jpeg');
+    elLink.href = imgContent;
+}
+
 
 function onCanvasClick(ev) {
     var { offsetY } = ev;

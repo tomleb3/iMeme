@@ -8,12 +8,21 @@
     font-family: Langar;
     src: url(../fonts/Langar/Langar-Regular.ttf);
 }
+@font-face {
+    font-family: Balsamiq;
+    src: url(../fonts/Balsamiq_Sans/BalsamiqSans-Regular.ttf);
+}
+@font-face {
+    font-family: Balsamiq-bold;
+    src: url(../fonts/Balsamiq_Sans/BalsamiqSans-Bold.ttf);
+}
 
 /* BASIC */
 
 .main-layout {
-    max-width: 1000px;
+    max-width: 1300px;
     margin: 0 auto;
+    transition: 0.2s;
 }
 
 .clean-list {
@@ -32,12 +41,20 @@
     display: inline-flex;
 }
 
-.flex.start {
+.flex.j-start {
     justify-content: flex-start;
 }
 
-.flex.end {
+.flex.j-end {
     justify-content: flex-end;
+}
+
+.flex.a-start {
+    align-items: flex-start;
+}
+
+.flex.a-end {
+    align-items: flex-end;
 }
 
 /* GRID */
@@ -56,6 +73,10 @@
     justify-content: center;
 }
 
-.just-spacebetween {
+.just-between {
     justify-content: space-between;
+}
+
+.just-around{
+    justify-content: space-around;
 }

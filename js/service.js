@@ -51,15 +51,15 @@ function drawLine(x, y) {
     gCtx.moveTo(x, y);
     gCtx.lineTo(gCanvas.width, y);
     gCtx.closePath();
-    gCtx.lineWidth = 1;
+    gCtx.lineWidth = 3;
     gCtx.stroke();
 }
 
-function drawTxt(txt, x = gTxtProp.pos.x, y = gTxtProp.pos.y) {
+function drawTxt(txt, size = gTxtProp.size, font = gTxtProp.font, align = gTxtProp.align, x = gTxtProp.pos.x, y = gTxtProp.pos.y) {
     txt = txt.toUpperCase();
     gCtx.lineWidth = 5;
-    gCtx.font = `${gTxtProp.size}pt ${gTxtProp.font}`;
-    gCtx.textAlign = gTxtProp.align;
+    gCtx.font = `${size}pt ${font}`;
+    gCtx.textAlign = align;
     gCtx.fillStyle = 'white';
     gCtx.lineJoin = 'round';
     gCtx.strokeText(txt, x, y);
@@ -68,7 +68,7 @@ function drawTxt(txt, x = gTxtProp.pos.x, y = gTxtProp.pos.y) {
 
 function drawAllTxt() {
     gMeme.lines.forEach((line, idx) => {
-        drawTxt(line.txt, line.pos.x, line.pos.y);
+        drawTxt(line.txt, line.size, line.font, line.align, line.pos.x, line.pos.y);
         if (gMeme.selectedLineIdx === idx) {
             drawLine(0, line.pos.y - (line.size + 10));
             drawLine(0, line.pos.y + 10);
@@ -83,8 +83,8 @@ function addTxt(txt) {
     gMeme.lines.push({
         txt: txt,
         size: gTxtProp.size,
-        align: txt.align,
-        isHighlighted: false,
+        font: gTxtProp.font,
+        align: gTxtProp.align,
         pos: { x: gTxtProp.pos.x, y: gTxtProp.pos.y }
     });
 }
@@ -92,20 +92,47 @@ function addTxt(txt) {
 function removeTxt() {
     if (gMeme.selectedLineIdx !== -1)
         gMeme.lines.splice(gMeme.selectedLineIdx, 1);
+    else gMeme.lines = [];
 }
 
 function moveTxt(direction) {
     if (gMeme.selectedLineIdx !== -1)
-        direction === 'up' ? gMeme.lines[gMeme.selectedLineIdx].pos.y-- : gMeme.lines[gMeme.selectedLineIdx].pos.y++;
+        direction === 'up' ? gMeme.lines[gMeme.selectedLineIdx].pos.y -= 5 : gMeme.lines[gMeme.selectedLineIdx].pos.y += 5;
+    else
+        direction === 'up' ? gMeme.lines.forEach(line => { line.pos.y -= 5 }) : gMeme.lines.forEach(line => { line.pos.y += 5 });
 }
 
 function changeSize(size) {
-    if (gMeme.selectedLineIdx !== -1)
-        size === 'plus' ? gTxtProp.size++ : gTxtProp.size--;
+    if (size === 'plus') {
+        gTxtProp.size++;
+        if (gMeme.selectedLineIdx !== -1)
+            gMeme.lines[gMeme.selectedLineIdx].size += 2;
+        else
+            gMeme.lines.forEach(line => { line.size += 2 });
+    }
+    else {
+        gTxtProp.size--;
+        if (gMeme.selectedLineIdx !== -1)
+            gMeme.lines[gMeme.selectedLineIdx].size -= 2;
+        else
+            gMeme.lines.forEach(line => { line.size -= 2 });
+    }
 }
 
-function changeAlign(){
-    txtProp.align = align;
+function changeAlign(align) {
+    if (gMeme.selectedLineIdx !== -1)
+        gMeme.lines[gMeme.selectedLineIdx].align = align;
+    else
+        gMeme.lines.forEach(line => { line.align = align });
+    gTxtProp.align = align;
+}
+
+function changeFont(font) {
+    if (gMeme.selectedLineIdx !== -1)
+        gMeme.lines[gMeme.selectedLineIdx].font = font;
+    else
+        gMeme.lines.forEach(line => { line.font = font });
+    gTxtProp.font = font;
 }
 
 function clearCanvas() {

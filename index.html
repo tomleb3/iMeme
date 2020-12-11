@@ -12,47 +12,58 @@
 
 <body onload="onInit()">
     <header>
-        <nav class="main-layout flex just-spacebetween">
-            <div class="logo" onclick="location.reload()">iMeme</div>
+        <nav class="main-layout flex">
+            <div class="logo" onclick="location.reload()"><span>i</span>Meme</div>
             <ul class="clean-list flex">
-                <li><a href="#">Gallery</a></li>
-                <li><a href="#">Memes</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="#main">Gallery</a></li>
+                <li><a href="#footer">About</a></li>
             </ul>
+            <div class="search-container">
+                <input type="text" name="search" placeholder="Search..">
+            </div>
+            <button class="open-menu" onclick="toggleMenu()">☰</button>
         </nav>
     </header>
 
     <section class="main-layout">
-        <canvas width="500px" height="500px" onmousedown="onCanvasClick(event)"></canvas>
-        <div class="control-box">
-            <input type="text" name="meme-txt" placeholder="Text line" oninput="renderCanvas()">
-            <div class="flex just-center">
-                <button onclick="onMoveTxt('up')">↑</button>
-                <button onclick="onMoveTxt('down')">↓</button>
-                <button onclick="onAddTxt()">+</button>
-                <button onclick="onRemoveTxt()">X</button>
-            </div>
-            <div>
-                <button onclick="onChangeSize('plus')">A+</button>
-                <button onclick="onChangeSize('minus')">A-</button>
-                <button onclick="onChangeAlign('end')">L</button>
-                <button onclick="onChangeAlign('center')">C</button>
-                <button onclick="onChangeAlign('start')">R</button>
+        <p>Click on an added line to change it individually..</p>
+        <div class="container flex just-between">
+            <canvas width="500px" height="500px" onmousedown="onCanvasClick(event)"></canvas>
+            <div class="control-box">
+                <input type="text" name="meme-txt" placeholder="Text line" oninput="renderCanvas()">
+                <div class="btn-group1 flex just-center">
+                    <button onclick="onMoveTxt('up')"></button>
+                    <button onclick="onMoveTxt('down')"></button>
+                    <button onclick="onAddTxt()"></button>
+                    <button onclick="onRemoveTxt()"></button>
+                </div>
+                <div class="btn-group2 flex just-center">
+                    <button onclick="onChangeSize('plus')"></button>
+                    <button onclick="onChangeSize('minus')"></button>
+                </div>
+                <div class="btn-group3 flex just-center">
+                    <button onclick="onChangeAlign('end')"></button>
+                    <button onclick="onChangeAlign('center')"></button>
+                    <button onclick="onChangeAlign('start')"></button>
+                </div>
                 <select name="font-family" onchange="onChangeFont(this.value)">
-                    <option value="impact" selected>IMPACT</option>
+                    <option value="impact" selected disabled>FONT:</option>
+                    <option value="impact">IMPACT</option>
                     <option value="monospace">MONOSPACE</option>
                     <option value="cursive">CURSIVE</option>
                 </select>
+                <form class="flex just-around" action="" method="POST" enctype="multipart/form-data"
+                    onsubmit="uploadImg(this, event)">
+                    <button>Share</button>
+                    <button onclick="downloadImg(this)">Download</button>
+                    <div class="share-container"></div>
+                </form>
             </div>
         </div>
     </section>
 
-    <main class="main-layout">
-        <div class="search-container">
-            <input type="text" name="search" placeholder="Search..">
-        </div>
-
-        <div class="gallery grid">
+    <main id="main" class="main-layout">
+        <div class="gallery grid main-layout">
             <!-- rendered in js -->
         </div>
     </main>
@@ -60,10 +71,16 @@
     <aside class="sidenav">
     </aside>
 
-    <footer>
+    <footer id="footer">
+        <img src="./imgs/profile.jfif">
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident quis et veniam, aliquam officiis quisquam
+            laborum explicabo delectus minima sed, numquam veritatis dicta amet repellendus, a qui consectetur rerum
+            vel.
+        </p>
     </footer>
 
     <script src="js/utils.js"></script>
+    <script src="js/upload-service.js"></script>
     <script src="js/service.js"></script>
     <script src="js/controller.js"></script>
 </body>
