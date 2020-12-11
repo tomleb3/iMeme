@@ -240,6 +240,9 @@ footer p {}
     .main-layout {
         max-width: 850px;
     }
+    .control-box .share-container button {
+        font-size: 1.2rem;
+    }
 }
 
 @media (max-width:960px) {
@@ -258,6 +261,7 @@ footer p {}
         margin: auto;
         width: auto;
         width: 70%;
+        font-size: 2rem;
     }
 }
 
@@ -289,7 +293,7 @@ footer p {}
     }
 }
 
-@media (max-width:400px) {
+@media (max-width:450px) {
     .main-layout {
         max-width: 300px;
     }
@@ -300,9 +304,5 @@ footer p {}
     }
     canvas {
         max-width: 100%;
-    }
-    .control-box form button {
-        font-size: 1.2rem;
-        justify-content: space-between;
     }
 }

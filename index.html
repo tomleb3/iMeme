@@ -52,12 +52,13 @@
                     <option value="monospace">MONOSPACE</option>
                     <option value="cursive">CURSIVE</option>
                 </select>
-                <form class="flex just-around" action="" method="POST" enctype="multipart/form-data"
-                    onsubmit="uploadImg(this, event)">
+                <div class="share-container flex just-around">
                     <button>Share</button>
-                    <button onclick="downloadImg(this)">Download</button>
-                    <div class="share-container"></div>
-                </form>
+                    <a id="download" download="myImage.jpg" href="" onclick="downloadImg(this)">
+                        <button onclick="downloadImg(this)">Download</button>
+                    </a>
+                    <div></div> <!-- for some reason removing this div has an effect on button location -->
+                </div>
             </div>
         </div>
     </section>
@@ -80,7 +81,6 @@
     </footer>
 
     <script src="js/utils.js"></script>
-    <script src="js/upload-service.js"></script>
     <script src="js/service.js"></script>
     <script src="js/controller.js"></script>
 </body>

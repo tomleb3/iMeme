@@ -64,27 +64,11 @@ function onChangeFont(font) {
     renderCanvas();
 }
 
-function onImgInput(ev) {
-    loadImageFromInput(ev, renderCanvas)
-}
-
-function loadImageFromInput(ev, onImageReady) {
-    document.querySelector('.share-container').innerHTML = ''
-    var reader = new FileReader();
-
-    reader.onload = function (event) {
-        var img = new Image();
-        img.onload = onImageReady.bind(null, img)
-        img.src = event.target.result;
-    }
-    reader.readAsDataURL(ev.target.files[0]);
-}
-
 function downloadImg(elLink) {
-    var imgContent = gCanvas.toDataURL('image/jpeg');
-    elLink.href = imgContent;
+    const data = gCanvas.toDataURL();
+    elLink.href = data;
+    elLink.download = 'iMeme.jpg';
 }
-
 
 function onCanvasClick(ev) {
     var { offsetY } = ev;
