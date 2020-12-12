@@ -239,7 +239,7 @@ aside.sidenav {
     top: 0;
     right: 0;
     height: 100%;
-    width: 50%;
+    width: 40%;
     background-color: #292929;
     z-index: 2;
     display: none;
@@ -374,12 +374,18 @@ footer .logo {
     }
 }
 
-@media (max-width:1200px) {
+@media (max-width:1100px) {
     .main-layout {
         max-width: 850px;
     }
     .control-box .share-container button {
         font-size: 1.2rem;
+    }
+    button.open-menu {
+        display: block;
+    }
+    header nav li, header nav .search-container, header .trans-container, header .upload-container {
+        display: none;
     }
 }
 
@@ -413,12 +419,6 @@ footer .logo {
     header nav {
         justify-content: space-between;
     }
-    button.open-menu {
-        display: block;
-    }
-    header nav li, header nav .search-container, header .trans-container, header .upload-container {
-        display: none;
-    }
     canvas {
         max-width: 400px;
         max-height: 400px;
@@ -434,6 +434,9 @@ footer .logo {
     .control-box button, .control-box input[name="txt-color"] {
         height: 2rem;
         width: 2rem;
+    }
+    aside.sidenav{
+width: 50%;
     }
     footer p {
         width: 350px;
