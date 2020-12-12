@@ -4,14 +4,17 @@
     font-family: Ranchers;
     src: url(../fonts/Ranchers/Ranchers-Regular.ttf);
 }
+
 @font-face {
     font-family: Langar;
     src: url(../fonts/Langar/Langar-Regular.ttf);
 }
+
 @font-face {
     font-family: Balsamiq;
     src: url(../fonts/Balsamiq_Sans/BalsamiqSans-Regular.ttf);
 }
+
 @font-face {
     font-family: Balsamiq-bold;
     src: url(../fonts/Balsamiq_Sans/BalsamiqSans-Bold.ttf);
@@ -39,6 +42,18 @@
 
 .flex.inline {
     display: inline-flex;
+}
+
+.flex.row {
+    flex-direction: row;
+}
+
+.flex.column {
+    flex-direction: column;
+}
+
+.flex.wrap {
+    flex-wrap: wrap;
 }
 
 .flex.j-start {
@@ -77,6 +92,18 @@
     justify-content: space-between;
 }
 
-.just-around{
+.just-around {
     justify-content: space-around;
+}
+
+/* background */
+
+.bg-dim {
+    opacity: 0.2;
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+.hide-overflow {
+    overflow: hidden;
 }

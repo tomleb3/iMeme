@@ -52,11 +52,11 @@ button {
     font-size: 1.25rem;
 }
 
-button:hover, main img:hover {
+button:hover, main img:hover, footer .socials img:hover {
     transform: scale(1.03);
 }
 
-button:active, main img:active {
+button:active, main img:active, footer .socials img:active {
     transform: scale(0.98);
 }
 
@@ -65,26 +65,29 @@ button:active, main img:active {
 header {
     width: 100vw;
     background-color: #333;
-    color: white;
     z-index: 1;
     position: fixed;
     height: 70px;
     line-height: 70px;
 }
 
-header .logo {
+header *:not(input) {
+    color: white;
+    outline: none;
+}
+
+.logo {
     font-family: Ranchers;
     font-size: 2rem;
     cursor: pointer;
 }
 
 .logo span {
-    color: #5DADE2;
+    color: #5DADE2 !important;
 }
 
-.search-container {
-    display: block;
-    float: right;
+header button:first-child {
+    margin-top: 3px;
 }
 
 header li {
@@ -96,8 +99,13 @@ header li:first-child {
     margin-inline-start: 100px;
 }
 
+input[name="img-file"] {
+    border: none;
+    margin-top: 8px;
+}
+
 .open-menu {
-    color: white;
+    color: inherit;
     display: none;
 }
 
@@ -141,7 +149,14 @@ canvas {
     border-radius: 5px;
 }
 
-section .control-box button {
+.control-box input[name="txt-color"] {
+    background: url(../imgs/icons/paint.png) no-repeat;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+}
+
+.control-box button, .control-box input[name="txt-color"] {
     margin: 15px;
     width: 2.5rem;
     height: 2.5rem;
@@ -188,11 +203,16 @@ section select[name=font-family] :nth-child(4) {
 }
 
 .control-box .btn-group2 button:nth-child(1) {
-    background: url(../imgs/icons/font-increase.png) no-repeat;
+    background: url(../imgs/icons/switch-lines.png) no-repeat;
     background-size: cover;
 }
 
 .control-box .btn-group2 button:nth-child(2) {
+    background: url(../imgs/icons/font-increase.png) no-repeat;
+    background-size: cover;
+}
+
+.control-box .btn-group2 button:nth-child(3) {
     background: url(../imgs/icons/font-decrease.png) no-repeat;
     background-size: cover;
 }
@@ -214,6 +234,97 @@ section select[name=font-family] :nth-child(4) {
 
 /* ASIDE */
 
+aside.sidenav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 50%;
+    background-color: #292929;
+    z-index: 2;
+    display: none;
+}
+
+aside.sidenav *:not(input) {
+    color: white;
+}
+
+.close-menu {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: inherit;
+}
+
+.sidenav .logo {
+    margin: 20px;
+}
+
+.sidenav-list, aside .trans-container {
+    margin-bottom: 50px;
+}
+
+aside .trans-container {
+    border-top: 1px solid #c2c2c2;
+    border-bottom: 1px solid #c2c2c2;
+}
+
+aside .trans-container div:first-child {
+    background: url(../imgs/icons/locale.png) no-repeat;
+    background-size: cover;
+    height: 4rem;
+    width: 4rem;
+    margin: 10px;
+}
+
+aside .trans-container div:last-child {
+    margin: 15px;
+}
+
+.sidenav-list li {
+    margin: 0.5rem;
+    border-bottom: 2px solid #c2c2c2;
+    margin-bottom: 10px;
+    height: 5%;
+    width: 60%;
+    border-radius: 5px;
+    line-height: 5vh;
+    cursor: pointer;
+    font-weight: 700;
+    transition: transform 0.1s;
+}
+
+.sidenav-list a {
+    display: block;
+    width: 100%;
+}
+
+.sidenav-list li:hover {
+    border-bottom: 2px solid #58c93a;
+    transform: scale(1.03);
+}
+
+.sidenav-list:active {
+    color: #58c93a;
+    transform: scale(0.98);
+}
+
+.sidenav .search-container input {
+    width: 100%;
+}
+
+.sidenav .search-container button {
+    position: relative;
+    right: 20px;
+    bottom: 35px;
+    float: right;
+    width: 1.25rem;
+    height: 1.25rem;
+    background: url(../imgs/icons/search.png) no-repeat;
+    background-size: cover;
+    opacity: 0.6;
+}
+
 /* FOOTER */
 
 footer#footer {
@@ -223,12 +334,39 @@ footer#footer {
 
 footer img {
     height: 150px;
-    margin: 5%;
+    width: 150px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     border-radius: 50%;
-    float: left;
 }
 
-footer p {}
+footer .socials-container {
+    margin-inline-start: 3rem;
+}
+
+footer ul {
+    flex-basis: 100%;
+}
+
+footer .socials img {
+    height: 2rem;
+    width: 2rem;
+    margin-inline-end: 1.5rem;
+    cursor: pointer;
+    border-radius: 0;
+}
+
+footer p {
+    width: 700px;
+    word-wrap: break-word;
+    margin-inline-start: 5%;
+}
+
+footer .logo {
+    margin-inline-start: 5rem;
+}
+
+/* QUERIES */
 
 @media (max-width:1400px) {
     .main-layout {
@@ -263,23 +401,42 @@ footer p {}
         width: 70%;
         font-size: 2rem;
     }
+    footer p {
+        width: 450px;
+    }
 }
 
 @media (max-width:760px) {
     .main-layout {
         max-width: 550px;
     }
-    .control-box {
-        width: 100%;
+    header nav {
+        justify-content: space-between;
+    }
+    button.open-menu {
+        display: block;
+    }
+    header nav li, header nav .search-container, header .trans-container, header .upload-container {
+        display: none;
     }
     canvas {
         max-width: 400px;
         max-height: 400px;
     }
+    .control-box {
+        width: 400px;
+    }
     .gallery img {
         margin-inline-start: -8%;
         max-height: 350px;
         max-width: 350px;
+    }
+    .control-box button, .control-box input[name="txt-color"] {
+        height: 2rem;
+        width: 2rem;
+    }
+    footer p {
+        width: 350px;
     }
 }
 
@@ -291,6 +448,15 @@ footer p {}
         max-width: 350px;
         max-height: 350px;
     }
+    .control-box {
+        width: 350px;
+    }
+    aside.sidenav {
+        width: 60%;
+    }
+    footer p {
+        width: 200px;
+    }
 }
 
 @media (max-width:450px) {
@@ -298,11 +464,53 @@ footer p {}
         max-width: 300px;
     }
     .gallery img {
-        margin-inline-start: 10%;
+        margin-inline-start: 8%;
         max-height: 250px;
         max-width: 250px;
     }
-    canvas {
+    canvas, .control-box {
         max-width: 100%;
+    }
+    footer#footer *:not(p) {
+        margin-inline-start: 1%;
+    }
+    aside.sidenav {
+        height: 60vh;
+        width: 100%;
+    }
+    .sidenav-list, aside .trans-container {
+        margin-bottom: 25px;
+    }
+    .sidenav .search-container input {
+        position: absolute;
+        bottom: 15px;
+    }
+    .sidenav .search-container button {
+        position: absolute;
+        bottom: 30px;
+    }
+}
+
+@media (max-width:350px) {
+    .main-layout {
+        max-width: 250px;
+    }
+}
+
+@media (max-width:300px) {
+    .main-layout {
+        max-width: 200px;
+    }
+    .gallery img {
+        margin-inline-start: 18%;
+        max-height: 200px;
+        max-width: 200px;
+    }
+    .control-box button, .control-box input[name="txt-color"] {
+        height: 1.5rem;
+        width: 1.5rem;
+    }
+    .control-box .share-container button {
+        font-size: 0.8rem;
     }
 }
