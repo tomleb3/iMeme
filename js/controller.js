@@ -110,7 +110,7 @@ function bgDimToggle() {
 }
 
 function toggleMenu(ev) {
-    ev.preventDefault();
+    if (ev) ev.preventDefault();
     var elMenu = document.querySelector('aside.sidenav');
     if (!elMenu.style.display || elMenu.style.display === 'none')
         elMenu.style.display = 'block';

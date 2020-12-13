@@ -65,15 +65,17 @@
                     <option value="monospace">MONOSPACE</option>
                     <option value="cursive">CURSIVE</option>
                 </select>
-                <form class="share-container flex just-around" action="" method="POST" enctype="multipart/form-data"
-                    onsubmit="uploadImg(this, event)">
-                    <input name="img" id="imgData" type="hidden" />
-                    <button type="submit" data-trans="share">Share</button>
+                <div class="share-container flex just-around">
+                    <form action="" method="POST" enctype="multipart/form-data"
+                        onsubmit="uploadImg(this, event)">
+                        <input name="img" id="imgData" type="hidden" />
+                        <button type="submit" data-trans="share">Share</button>
+                    </form>
                     <a download="iMeme.jpg" href="" onclick="downloadImg(this)">
                         <button data-trans="download">Download</button>
                     </a>
                     <div></div>
-                </form>
+                </div>
             </div>
         </div>
     </section>
@@ -88,8 +90,8 @@
         <div class="logo" onclick="location.reload()"><span>i</span>Meme</div>
         <button class="close-menu" onclick="toggleMenu(event)">X</button>
         <ul class="sidenav-list clean-list">
-            <li><a href="#main" data-trans="gallery">Gallery</a></li>
-            <li><a href="#footer" data-trans="about">About</a></li>
+            <li><a href="#main" data-trans="gallery" onclick="toggleMenu();">Gallery</a></li>
+            <li><a href="#footer" data-trans="about" onclick="toggleMenu();">About</a></li>
         </ul>
         <div class="trans-container flex">
             <div></div>
