@@ -17,6 +17,10 @@ var gTrans = {
         en: 'Download',
         he: 'הורד',
     },
+    upload: {
+        en: 'Upload',
+        he: 'העלאה',
+    },
     search: {
         en: 'Search..',
         he: '..חפש',
