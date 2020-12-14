@@ -15,7 +15,8 @@ var gTxtProp = {
     font: 'impact',
     size: 30,
     align: 'center',
-    color: '#FFFFFF',
+    strokeColor: '#000000',
+    fillColor: '#FFFFFF',
     pos: { x: gCanvas.width / 2, y: gCanvas.height / 6 }
 }
 
@@ -56,12 +57,13 @@ function drawLine(x, y) {
     gCtx.stroke();
 }
 
-function drawTxt(txt, size = gTxtProp.size, font = gTxtProp.font, align = gTxtProp.align, color = gTxtProp.color, x = gTxtProp.pos.x, y = gTxtProp.pos.y) {
+function drawTxt(txt, size = gTxtProp.size, font = gTxtProp.font, align = gTxtProp.align, strokeColor = gTxtProp.strokeColor, fillColor = gTxtProp.fillColor, x = gTxtProp.pos.x, y = gTxtProp.pos.y) {
     txt = txt.toUpperCase();
     gCtx.lineWidth = 5;
     gCtx.font = `${size}pt ${font}`;
     gCtx.textAlign = align;
-    gCtx.fillStyle = color;
+    gCtx.strokeStyle = strokeColor;
+    gCtx.fillStyle = fillColor;
     gCtx.lineJoin = 'round';
     gCtx.strokeText(txt, x, y);
     gCtx.fillText(txt, x, y);
@@ -69,7 +71,7 @@ function drawTxt(txt, size = gTxtProp.size, font = gTxtProp.font, align = gTxtPr
 
 function drawAllTxt() {
     gMeme.lines.forEach((line, idx) => {
-        drawTxt(line.txt, line.size, line.font, line.align, line.color, line.pos.x, line.pos.y);
+        drawTxt(line.txt, line.size, line.font, line.align, line.strokeColor, line.fillColor, line.pos.x, line.pos.y);
         if (gMeme.selectedLineIdx === idx) {
             drawLine(0, line.pos.y - (line.size + 10));
             drawLine(0, line.pos.y + 10);
@@ -86,7 +88,8 @@ function addTxt(txt) {
         size: gTxtProp.size,
         font: gTxtProp.font,
         align: gTxtProp.align,
-        color: gTxtProp.color,
+        strokeColor: gTxtProp.strokeColor,
+        fillColor: gTxtProp.fillColor,
         pos: { x: gTxtProp.pos.x, y: gTxtProp.pos.y }
     });
 }
@@ -143,12 +146,20 @@ function changeFont(font) {
     gTxtProp.font = font;
 }
 
-function changeColor(color) {
+function changeStrokeColor(color) {
     if (gMeme.selectedLineIdx !== -1)
-        gMeme.lines[gMeme.selectedLineIdx].color = color;
+        gMeme.lines[gMeme.selectedLineIdx].strokeColor = color;
     else
-        gMeme.lines.forEach(line => { line.color = color });
-    gTxtProp.color = color;
+        gMeme.lines.forEach(line => { line.strokeColor = color });
+    gTxtProp.strokeColor = color;
+}
+
+function changeFillColor(color) {
+    if (gMeme.selectedLineIdx !== -1)
+        gMeme.lines[gMeme.selectedLineIdx].fillColor = color;
+    else
+        gMeme.lines.forEach(line => { line.fillColor = color });
+    gTxtProp.fillColor = color;
 }
 
 function clearCanvas() {

@@ -80,19 +80,19 @@
 
 /* ALIGNMENT */
 
-.align-center {
+.a-center {
     align-items: center;
 }
 
-.just-center {
+.j-center {
     justify-content: center;
 }
 
-.just-between {
+.j-between {
     justify-content: space-between;
 }
 
-.just-around {
+.j-around {
     justify-content: space-around;
 }
 

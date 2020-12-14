@@ -72,8 +72,13 @@ function onChangeFont(font) {
     renderCanvas();
 }
 
-function onChangeColor(color) {
-    changeColor(color);
+function onChangeStrokeColor(color) {
+    changeStrokeColor(color);
+    renderCanvas();
+}
+
+function onChangeFillColor(color) {
+    changeFillColor(color);
     renderCanvas();
 }
 
@@ -87,14 +92,18 @@ function downloadImg(elLink) {
     elLink.download = 'iMeme.jpg';
 }
 
-function sideNavSearch() {
-    renderCanvas();
-}
+// function onSelectedIdxChange(idx) {
+//     const elInput = document.querySelector('input[name="meme-txt"]');
+//     let meme = getMeme();
+//     elInput.value = meme.lines[idx].txt;
+//     meme.selectedLineIdx = idx;
+// }
 
 function onCanvasClick(ev) {
     var { offsetY } = ev;
     let meme = getMeme();
     var clickedTxt = meme.lines.find((line, idx) => {
+        // onSelectedIdxChange(idx)
         meme.selectedLineIdx = idx;
         return offsetY <= line.pos.y && offsetY >= line.pos.y - line.size;
     })
@@ -103,9 +112,8 @@ function onCanvasClick(ev) {
 }
 
 function bgDimToggle() {
-    document.querySelector('header').classList.toggle('bg-dim');
-    document.querySelector('main').classList.toggle('bg-dim');
-    document.querySelector('footer').classList.toggle('bg-dim');
+    var elements = document.querySelectorAll('header, main, section, footer');
+    elements.forEach(element => { element.classList.toggle('bg-dim'); })
     document.body.classList.toggle('hide-overflow');
 }
 
@@ -122,17 +130,21 @@ function toggleMenu(ev) {
 function onSetLang(lang) {
     // if (lang === 'he') document.body.classList.add('rtl');
     // else document.body.classList.remove('rtl');
+    const elTransBtns = document.querySelectorAll('.trans-container button');
+    elTransBtns.forEach(btn => {
+        btn.value === lang ? btn.style.color = '#5DADE2' : btn.style.color = 'black';
+    })
+
     setLang(lang);
     doTrans();
 }
 
 function onImgInput(ev) {
-    loadImageFromInput(ev, renderCanvas)
+    loadImageFromInput(ev, renderCanvas);
 }
-function loadImageFromInput(ev, onImageReady) {
-    document.querySelector('.share-container').innerHTML = '';
-    var reader = new FileReader();
 
+function loadImageFromInput(ev, onImageReady) {
+    var reader = new FileReader();
     reader.onload = function (event) {
         var img = new Image();
         img.onload = onImageReady.bind(null, img);
